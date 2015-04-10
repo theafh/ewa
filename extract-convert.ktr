@@ -74,11 +74,11 @@
   <notepads>
   </notepads>
   <connection>
-    <name>localhost</name>
+    <name>mysql_eala</name>
     <server>&#x24;&#x7b;DB_HOSTNAME&#x7d;</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>eala</database>
+    <database>ewa</database>
     <port>3306</port>
     <username>&#x24;&#x7b;DB_LOGIN&#x7d;</username>
     <password>&#x24;&#x7b;DB_PWD&#x7d;</password>
@@ -99,7 +99,6 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>IN Acces-Logs</from><to>Regex Split Rows</to><enabled>Y</enabled> </hop>
   <hop> <from>Regex Split Rows</from><to>Filter &#x22;Broken Rows&#x22;</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter &#x22;Broken Rows&#x22;</from><to>Abort</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter &#x22;Broken Rows&#x22;</from><to>Convert Data</to><enabled>Y</enabled> </hop>
@@ -125,11 +124,9 @@
   <hop> <from>Filter &#x22;host ip&#x22;</from><to>Set &#x22;type -&#x3e; ip&#x22;</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter &#x22;host ip&#x22;</from><to>Join 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Set &#x22;type -&#x3e; ip&#x22;</from><to>Join 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Merge Join</from><to>classify</to><enabled>Y</enabled> </hop>
-  <hop> <from>classify</from><to>Select values 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select values 2</from><to>filter</to><enabled>Y</enabled> </hop>
-  <hop> <from>filter</from><to>Sort rows 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Sort rows 2</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge Join</from><to>Sort rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Sort rows</from><to>OUT csvs</to><enabled>Y</enabled> </hop>
+  <hop> <from>IN Acces-Logs</from><to>Regex Split Rows</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Abort</name>
@@ -147,8 +144,8 @@
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>472</xloc>
-      <yloc>18</yloc>
+      <xloc>465</xloc>
+      <yloc>131</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -192,8 +189,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>198</xloc>
-      <yloc>170</yloc>
+      <xloc>68</xloc>
+      <yloc>316</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -216,8 +213,8 @@
       <compress>Y</compress>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>330</xloc>
-      <yloc>170</yloc>
+      <xloc>208</xloc>
+      <yloc>131</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -237,7 +234,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#x2f;&#x2f; &#x28;&#x5b;0-9&#x5d;&#x7b;1,3&#x7d;&#x5c;.&#x5b;0-9&#x5d;&#x7b;1,3&#x7d;&#x5c;.&#x5b;0-9&#x5d;&#x7b;1,3&#x7d;&#x5c;.&#x5b;0-9&#x5d;&#x7b;1,3&#x7d;&#x29; &#x5b;&#x5c;w-&#x5d;&#x2b; &#x5b;&#x5c;w-&#x5d;&#x2b; &#x5c;&#x5b;&#x28;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x2f;&#x5b;a-z&#x5d;&#x7b;3&#x7d;&#x2f;&#x5b;0-9&#x5d;&#x7b;4&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x29; &#x28;&#x28;&#x3f;&#x3a;-&#x7c;&#x5c;&#x2b;&#x29;&#x5b;0-9&#x5d;&#x7b;4&#x7d;&#x29;&#x5c;&#x5d; &#x22;&#x28;GET&#x7c;HEAD&#x7c;POST&#x29; &#x28;&#x5b;&#x5e;&#x22;&#x5d;&#x2b;&#x29; &#x28;HTTP&#x5b;&#x5e;&#x22;&#x5d;&#x2b;&#x29;&#x22; &#x28;&#x5c;d&#x7b;3&#x7d;&#x29; &#x28;&#x5c;d&#x2b;&#x7c;-&#x29; &#x22;&#x28;&#x28;&#x3f;&#x3a;&#x5c;&#x5c;&#x22;&#x7c;&#x5b;&#x5e;&#x22;&#x5d;&#x29;&#x2a;&#x29;&#x22; &#x22;&#x28;&#x28;&#x3f;&#x3a;&#x5c;&#x5c;&#x22;&#x7c;&#x5b;&#x5e;&#x22;&#x5d;&#x29;&#x2a;&#x29;&#x22;&#xa;&#x2f;&#x2f; &#x28;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x2f;&#x5b;a-z&#x5d;&#x7b;3&#x7d;&#x2f;&#x5b;0-9&#x5d;&#x7b;4&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x29; &#x28;&#x28;&#x3f;&#x3a;-&#x7c;&#x5c;&#x2b;&#x29;&#x5b;0-9&#x5d;&#x7b;4&#x7d;&#x29;&#xa;&#xa;var date_str  &#x3d; date_time_str&#x3b;&#xa;var agent_str &#x3d; ua&#x2b;&#x22;&#x22;&#x3b;&#xa;var ref_str   &#x3d; ref_url&#x2b;&#x22;&#x22;&#x3b;&#xa;var req_str   &#x3d; req_url&#x2b;&#x22;&#x22;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 0.&#x29; prepare data&#xa;&#xa;&#x2f;&#x2f; 0.1.&#x29; convert textual representation of month names in date string to number string&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;January&#x7c;Jan&#x2f;gi, &#x22;1&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;February&#x7c;Feb&#x2f;gi, &#x22;2&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;March&#x7c;Mar&#x2f;gi, &#x22;3&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;April&#x7c;Apr&#x2f;gi, &#x22;4&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;May&#x2f;gi, &#x22;5&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;June&#x7c;Jun&#x2f;gi, &#x22;6&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;July&#x7c;Jul&#x2f;gi, &#x22;7&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;August&#x7c;Aug&#x2f;gi, &#x22;8&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;September&#x7c;Sep&#x2f;gi, &#x22;9&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;October&#x7c;Oct&#x2f;gi, &#x22;10&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;November&#x7c;Nov&#x2f;gi, &#x22;11&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;December&#x7c;Dec&#x2f;gi, &#x22;12&#x22;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 0.2.&#x29; remove encoding of double qotes &#x27;&#x5c;&#x22;&#x27; -&#x3e; &#x27;&#x22;&#x22;&#x27;&#xa;agent_str &#x3d; agent_str.replace&#x28;&#x2f;&#x5c;&#x5c;&#x22;&#x2f;g, &#x27;&#x22;&#x27;&#x29;&#x3b;&#xa;ref_str   &#x3d; ref_str.replace&#x28;&#x2f;&#x5c;&#x5c;&#x22;&#x2f;g, &#x27;&#x22;&#x27;&#x29;&#x3b;&#xa;req_str   &#x3d; req_str.replace&#x28;&#x2f;&#x5c;&#x5c;&#x22;&#x2f;g, &#x27;&#x22;&#x27;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; construct a date object from the string elements&#xa;&#x2f;&#x2f; 1.1.&#x29; splitting the date string with character class &#x22;&#x2f;&#x3a; &#x22;&#xa;var parts &#x3d; date_str.split&#x28;&#x2f;&#x5b;&#x5c;&#x2f;&#x3a; &#x5d;&#x2f;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.2.&#x29; set date&#xa;var dt &#x3d; new Date&#x28;parts&#x5b;2&#x5d;,parts&#x5b;1&#x5d;-1,parts&#x5b;0&#x5d;&#x29;&#x3b; &#x2f;&#x2f;month is zero based&#x21;&#x21;&#x21; &#x28;-&#x3e; &#x22;-1&#x22;&#x29;&#xa;&#xa;&#x2f;&#x2f; 1.3.&#x29; set time&#xa;    dt.setHours&#x28;parts&#x5b;3&#x5d;,parts&#x5b;4&#x5d;,parts&#x5b;5&#x5d;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.4.&#x29; UTC time extraction and calculation&#xa;&#x2f;&#x2f; http&#x3a;&#x2f;&#x2f;www.techrepublic.com&#x2f;article&#x2f;convert-the-local-time-to-another-time-zone-with-this-javascript&#x2f;&#xa;&#x2f;&#x2f;var utc_str &#x3d; parts&#x5b;5&#x5d;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.5.&#x29; isolates the UTC timezone offset&#xa;&#x2f;&#x2f;date_str &#x3d; date_str.replace&#x28;&#x2f;-&#x2f;g, &#x22;- &#x22;&#x29;&#x3b;&#xa;&#x2f;&#x2f;date_str &#x3d; date_str.replace&#x28;&#x2f;&#x5c;&#x2b;&#x2f;g, &#x22;&#x2b; &#x22;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.6.&#x29; calculate the unix timestamp from date&#xa;var timestamp &#x3d; dt.getTime&#x28;&#x29;&#x3b;&#xa;    timestamp &#x3d; Math.floor&#x28;timestamp &#x2f; 1000&#x29;&#x3b; &#x2f;&#x2f; convert the millisecond JS timestamp in seconds -&#x3e; unix timestamp&#xa;&#xa;&#x2f;&#x2f; 2.1.&#x29; calculate the MD5 sum of the IP for data privacy and here in JS to safe extra step&#xa;var ip_id &#x3d; Packages.org.apache.commons.codec.digest.DigestUtils.md5Hex&#x28;ip&#x29;&#x3b;</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#x2f;&#x2f; &#x28;&#x5b;0-9&#x5d;&#x7b;1,3&#x7d;&#x5c;.&#x5b;0-9&#x5d;&#x7b;1,3&#x7d;&#x5c;.&#x5b;0-9&#x5d;&#x7b;1,3&#x7d;&#x5c;.&#x5b;0-9&#x5d;&#x7b;1,3&#x7d;&#x29; &#x5b;&#x5c;w-&#x5d;&#x2b; &#x5b;&#x5c;w-&#x5d;&#x2b; &#x5c;&#x5b;&#x28;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x2f;&#x5b;a-z&#x5d;&#x7b;3&#x7d;&#x2f;&#x5b;0-9&#x5d;&#x7b;4&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x29; &#x28;&#x28;&#x3f;&#x3a;-&#x7c;&#x5c;&#x2b;&#x29;&#x5b;0-9&#x5d;&#x7b;4&#x7d;&#x29;&#x5c;&#x5d; &#x22;&#x28;GET&#x7c;HEAD&#x7c;POST&#x29; &#x28;&#x5b;&#x5e;&#x22;&#x5d;&#x2b;&#x29; &#x28;HTTP&#x5b;&#x5e;&#x22;&#x5d;&#x2b;&#x29;&#x22; &#x28;&#x5c;d&#x7b;3&#x7d;&#x29; &#x28;&#x5c;d&#x2b;&#x7c;-&#x29; &#x22;&#x28;&#x28;&#x3f;&#x3a;&#x5c;&#x5c;&#x22;&#x7c;&#x5b;&#x5e;&#x22;&#x5d;&#x29;&#x2a;&#x29;&#x22; &#x22;&#x28;&#x28;&#x3f;&#x3a;&#x5c;&#x5c;&#x22;&#x7c;&#x5b;&#x5e;&#x22;&#x5d;&#x29;&#x2a;&#x29;&#x22;&#xa;&#x2f;&#x2f; &#x28;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x2f;&#x5b;a-z&#x5d;&#x7b;3&#x7d;&#x2f;&#x5b;0-9&#x5d;&#x7b;4&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x29; &#x28;&#x28;&#x3f;&#x3a;-&#x7c;&#x5c;&#x2b;&#x29;&#x5b;0-9&#x5d;&#x7b;4&#x7d;&#x29;&#xa;&#xa;var date_str  &#x3d; date_time_str&#x3b;&#xa;var agent_str &#x3d; ua&#x2b;&#x22;&#x22;&#x3b;&#xa;var ref_str   &#x3d; ref_url&#x2b;&#x22;&#x22;&#x3b;&#xa;var req_str   &#x3d; req_url&#x2b;&#x22;&#x22;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 0.&#x29; prepare data&#xa;&#xa;&#x2f;&#x2f; 0.1.&#x29; convert textual representation of month names in date string to number string&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;January&#x7c;Jan&#x2f;gi, &#x22;1&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;February&#x7c;Feb&#x2f;gi, &#x22;2&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;March&#x7c;Mar&#x2f;gi, &#x22;3&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;April&#x7c;Apr&#x2f;gi, &#x22;4&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;May&#x2f;gi, &#x22;5&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;June&#x7c;Jun&#x2f;gi, &#x22;6&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;July&#x7c;Jul&#x2f;gi, &#x22;7&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;August&#x7c;Aug&#x2f;gi, &#x22;8&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;September&#x7c;Sep&#x2f;gi, &#x22;9&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;October&#x7c;Oct&#x2f;gi, &#x22;10&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;November&#x7c;Nov&#x2f;gi, &#x22;11&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;December&#x7c;Dec&#x2f;gi, &#x22;12&#x22;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 0.2.&#x29; remove encoding of double qotes &#x27;&#x5c;&#x22;&#x27; -&#x3e; &#x27;&#x22;&#x22;&#x27;&#xa;agent_str &#x3d; agent_str.replace&#x28;&#x2f;&#x5c;&#x5c;&#x22;&#x2f;g, &#x27;&#x22;&#x27;&#x29;&#x3b;&#xa;ref_str   &#x3d; ref_str.replace&#x28;&#x2f;&#x5c;&#x5c;&#x22;&#x2f;g, &#x27;&#x22;&#x27;&#x29;&#x3b;&#xa;req_str   &#x3d; req_str.replace&#x28;&#x2f;&#x5c;&#x5c;&#x22;&#x2f;g, &#x27;&#x22;&#x27;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; construct a date object from the string elements&#xa;&#x2f;&#x2f; 1.1.&#x29; splitting the date string with character class &#x22;&#x2f;&#x3a; &#x22;&#xa;var parts &#x3d; date_str.split&#x28;&#x2f;&#x5b;&#x5c;&#x2f;&#x3a; &#x5d;&#x2f;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.2.&#x29; set date&#xa;var dt &#x3d; new Date&#x28;parts&#x5b;2&#x5d;,parts&#x5b;1&#x5d;-1,parts&#x5b;0&#x5d;&#x29;&#x3b; &#x2f;&#x2f;month is zero based&#x21;&#x21;&#x21; &#x28;-&#x3e; &#x22;-1&#x22;&#x29;&#xa;&#xa;&#x2f;&#x2f; 1.3.&#x29; set time&#xa;    dt.setHours&#x28;parts&#x5b;3&#x5d;,parts&#x5b;4&#x5d;,parts&#x5b;5&#x5d;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.4.&#x29; UTC time extraction and calculation&#xa;&#x2f;&#x2f; http&#x3a;&#x2f;&#x2f;www.techrepublic.com&#x2f;article&#x2f;convert-the-local-time-to-another-time-zone-with-this-javascript&#x2f;&#xa;&#x2f;&#x2f;var utc_str &#x3d; parts&#x5b;5&#x5d;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.5.&#x29; isolates the UTC timezone offset&#xa;&#x2f;&#x2f;date_str &#x3d; date_str.replace&#x28;&#x2f;-&#x2f;g, &#x22;- &#x22;&#x29;&#x3b;&#xa;&#x2f;&#x2f;date_str &#x3d; date_str.replace&#x28;&#x2f;&#x5c;&#x2b;&#x2f;g, &#x22;&#x2b; &#x22;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.6.&#x29; calculate the unix timestamp from date&#xa;var timestamp &#x3d; dt.getTime&#x28;&#x29;&#x3b;&#xa;    timestamp &#x3d; Math.floor&#x28;timestamp &#x2f; 1000&#x29;&#x3b; &#x2f;&#x2f; convert the millisecond JS timestamp in seconds -&#x3e; unix timestamp&#xa;&#xa;&#x2f;&#x2f; 2.1.&#x29; calculate the MD5 sum of the IP for data privacy and here in JS to safe extra step&#xa;var ip_id &#x3d; Packages.org.apache.commons.codec.digest.DigestUtils.md5Hex&#x28;ip&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 3.0.&#x29; build file name of CSV file using PATH and date infos &#x28;month is zero based&#x21;&#x29;&#xa;var tempdate &#x3d;  dt.getFullYear&#x28;&#x29; &#x2b; &#x22;.&#x22; &#x2b; &#x28;dt.getMonth&#x28;&#x29;&#x2b;1&#x29; &#x2b; &#x22;.&#x22; &#x2b; dt.getDate&#x28;&#x29;&#x3b;&#xa;var in_file_arr &#x3d; in_file_name.split&#x28;&#x22;-access&#x22;&#x29;&#x3b; &#xa;var file_name &#x3d; getVariable&#x28;&#x22;PROJECT_EALA_CSV_PATH&#x22;, &#x22;&#x22;&#x29; &#x2b; in_file_arr&#x5b;0&#x5d; &#x2b; &#x22;-&#x22; &#x2b; tempdate&#x3b;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>dt</name>
         <rename>date</rename>
         <type>Date</type>
@@ -274,10 +271,16 @@
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
+      </field>      <field>        <name>file_name</name>
+        <rename>file_name_path</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>472</xloc>
-      <yloc>88</yloc>
+      <xloc>346</xloc>
+      <yloc>25</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -293,7 +296,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>localhost</connection>
+    <connection>mysql_eala</connection>
     <cache>Y</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
@@ -321,11 +324,17 @@
         <default/>
         <type>Date</type>
       </value>
+      <value>
+        <name>type</name>
+        <rename>type</rename>
+        <default/>
+        <type>String</type>
+      </value>
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>198</xloc>
-      <yloc>252</yloc>
+      <xloc>68</xloc>
+      <yloc>410</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -343,27 +352,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>66</xloc>
-      <yloc>349</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Dummy &#x28;do nothing&#x29;</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>813</xloc>
-      <yloc>385</yloc>
+      <xloc>68</xloc>
+      <yloc>601</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -379,7 +369,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>localhost</connection>
+    <connection>mysql_eala</connection>
     <execute_each_row>N</execute_each_row>
     <single_statement>N</single_statement>
     <replace_variables>Y</replace_variables>
@@ -395,8 +385,8 @@
     </arguments>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>66</xloc>
-      <yloc>349</yloc>
+      <xloc>68</xloc>
+      <yloc>601</yloc>
       <draw>N</draw>
       </GUI>
     </step>
@@ -424,8 +414,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>330</xloc>
-      <yloc>18</yloc>
+      <xloc>465</xloc>
+      <yloc>25</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -458,8 +448,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>472</xloc>
-      <yloc>432</yloc>
+      <xloc>346</xloc>
+      <yloc>501</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -493,8 +483,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>330</xloc>
-      <yloc>432</yloc>
+      <xloc>346</xloc>
+      <yloc>403</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -522,9 +512,38 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>66</xloc>
-      <yloc>252</yloc>
+      <xloc>68</xloc>
+      <yloc>501</yloc>
       <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to/>
+<send_false_to/>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>line</leftvalue>
+ <function>CONTAINS</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>&#x5c;&#x22;</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>792</xloc>
+      <yloc>130</yloc>
+      <draw>N</draw>
       </GUI>
     </step>
 
@@ -566,7 +585,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>&#x2f;home&#x2f;andreas&#x2f;projekte&#x2f;eala&#x2f;logs&#x2f;</name>
+      <name>&#x24;&#x7b;PROJECT_EWA_LOGS_PATH&#x7d;</name>
       <filemask>theafh.net-access.log..&#x2a;.gz</filemask>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -610,7 +629,7 @@
     <line_number_files_extension>line</line_number_files_extension>
     <date_format_lenient>Y</date_format_lenient>
     <date_format_locale>de_DE</date_format_locale>
-    <shortFileFieldName/>
+    <shortFileFieldName>in_file_name</shortFileFieldName>
     <pathFieldName/>
     <hiddenFieldName/>
     <lastModificationTimeFieldName/>
@@ -620,8 +639,8 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>66</xloc>
-      <yloc>18</yloc>
+      <xloc>720</xloc>
+      <yloc>26</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -637,7 +656,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>localhost</connection>
+    <connection>mysql_eala</connection>
     <commit>100</commit>
     <update_bypassed>N</update_bypassed>
     <lookup>
@@ -672,8 +691,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>66</xloc>
-      <yloc>528</yloc>
+      <xloc>598</xloc>
+      <yloc>559</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -691,8 +710,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>198</xloc>
-      <yloc>432</yloc>
+      <xloc>208</xloc>
+      <yloc>501</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -710,8 +729,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>330</xloc>
-      <yloc>528</yloc>
+      <xloc>473</xloc>
+      <yloc>559</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -738,8 +757,204 @@
     </keys_2>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>330</xloc>
-      <yloc>252</yloc>
+      <xloc>208</xloc>
+      <yloc>219</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>OUT csvs</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>&#x3b;</separator>
+    <enclosure>&#x22;</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>UNIX</format>
+    <compression>GZip</compression>
+    <encoding>US-ASCII</encoding>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField>file_name_path</fileNameField>
+    <create_parent_folder>N</create_parent_folder>
+    <file>
+      <name>&#x24;&#x7b;PROJECT_EWA_CSV_PATH&#x7d;all</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>ip_id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>host</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ua</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>date_time_str</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>date</name>
+        <type>Date</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>timestamp</name>
+        <type>Integer</type>
+        <format>&#x23;&#x3b;-&#x23;</format>
+        <currency/>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>req_url</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ref_url</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>protocol</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>method</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>status</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>size</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>720</xloc>
+      <yloc>219</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -755,7 +970,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <script><![CDATA[([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}) [\w-]+ [\w-]+ \[([^\[\]]+)\] "(GET|HEAD|POST) ([^"]+) (HTTP[^"]+)" (\d{3}) (\d+|-) "((?:\\"|[^"])*)" "((?:\\"|[^"])*)"]]></script>    <matcher>line</matcher>
+    <script><![CDATA[([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}) [\w-]+ [\w-]+ \[([^\[\]]+)\] "(GET|HEAD|POST) ((?:[^"]|\\")+) (HTTP[^"]+)" (\d{3}) (\d+|-) "((?:\\"|[^"])*)" "((?:\\"|[^"])*)"]]></script>    <matcher>line</matcher>
     <resultfieldname>result</resultfieldname>
     <usevar>Y</usevar>
     <allowcapturegroups>Y</allowcapturegroups>
@@ -879,8 +1094,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>198</xloc>
-      <yloc>18</yloc>
+      <xloc>601</xloc>
+      <yloc>25</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -921,8 +1136,8 @@
         <replace>Y</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>66</xloc>
-      <yloc>432</yloc>
+      <xloc>208</xloc>
+      <yloc>601</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -938,7 +1153,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>localhost</connection>
+    <connection>mysql_eala</connection>
     <execute_each_row>N</execute_each_row>
     <single_statement>N</single_statement>
     <replace_variables>Y</replace_variables>
@@ -956,8 +1171,8 @@
     </arguments>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>198</xloc>
-      <yloc>349</yloc>
+      <xloc>208</xloc>
+      <yloc>601</yloc>
       <draw>N</draw>
       </GUI>
     </step>
@@ -986,47 +1201,12 @@
       </remove>      <remove>        <name>ua</name>
       </remove>      <remove>        <name>date</name>
       </remove>      <remove>        <name>timestamp</name>
+      </remove>      <remove>        <name>in_file_name</name>
+      </remove>      <remove>        <name>file_name_path</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>66</xloc>
-      <yloc>170</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select values 2</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>result</name>
-      </remove>      <remove>        <name>ip</name>
-      </remove>      <remove>        <name>date_time_str</name>
-      </remove>      <remove>        <name>method</name>
-      </remove>      <remove>        <name>protocol</name>
-      </remove>      <remove>        <name>size</name>
-      </remove>      <remove>        <name>ref_url</name>
-      </remove>      <remove>        <name>ua</name>
-      </remove>      <remove>        <name>date</name>
-      </remove>      <remove>        <name>timestamp</name>
-      </remove>      <remove>        <name>ip_id</name>
-      </remove>      <remove>        <name>ip_1</name>
-      </remove>      <remove>        <name>ip_id_1</name>
-      </remove>      <remove>        <name>new_host</name>
-      </remove>      <remove>        <name>type</name>
-      </remove>      <remove>        <name>host</name>
-      </remove>      <remove>        <name>update_date</name>
-      </remove>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>659</xloc>
-      <yloc>252</yloc>
+      <xloc>68</xloc>
+      <yloc>219</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1053,8 +1233,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>472</xloc>
-      <yloc>528</yloc>
+      <xloc>346</xloc>
+      <yloc>601</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1087,8 +1267,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>330</xloc>
-      <yloc>88</yloc>
+      <xloc>208</xloc>
+      <yloc>25</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1121,8 +1301,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>330</xloc>
-      <yloc>349</yloc>
+      <xloc>208</xloc>
+      <yloc>302</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1149,8 +1329,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>66</xloc>
-      <yloc>252</yloc>
+      <xloc>68</xloc>
+      <yloc>601</yloc>
       <draw>N</draw>
       </GUI>
     </step>
@@ -1195,60 +1375,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>198</xloc>
-      <yloc>88</yloc>
-      <draw>N</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Sort rows 2</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>Y</compress>
-      <compress_variable/>
-      <unique_rows>Y</unique_rows>
-    <fields>
-      <field>
-        <name>req_url</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>req_url_canonical</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>labels</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>ref_host</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>813</xloc>
-      <yloc>252</yloc>
+      <xloc>465</xloc>
+      <yloc>219</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1266,8 +1394,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>198</xloc>
-      <yloc>88</yloc>
+      <xloc>68</xloc>
+      <yloc>25</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1285,8 +1413,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>198</xloc>
-      <yloc>349</yloc>
+      <xloc>208</xloc>
+      <yloc>402</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1302,7 +1430,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>localhost</connection>
+    <connection>mysql_eala</connection>
     <sql>SELECT INET_NTOA&#x28;ip&#x29;, host, refresh AS ip FROM lookup ORDER BY ip DESC&#x3b; </sql>
     <limit>0</limit>
     <lookup/>
@@ -1311,180 +1439,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>66</xloc>
-      <yloc>349</yloc>
-      <draw>N</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Text file output</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <separator>&#x3b;</separator>
-    <enclosure>&#x22;</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>UNIX</format>
-    <compression>GZip</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>&#x2f;home&#x2f;andreas&#x2f;projekte&#x2f;mylog&#x2f;csv&#x2f;converted_logs</name>
-      <is_command>N</is_command>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>csv</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>Y</add_date>
-      <add_time>Y</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
-    <fields>
-      <field>
-        <name>ip</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>ua</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>req_url</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>ref_url</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>date</name>
-        <type>Date</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>timestamp</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>status</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>method</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>protocol</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>size</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>66</xloc>
-      <yloc>252</yloc>
+      <xloc>68</xloc>
+      <yloc>601</yloc>
       <draw>N</draw>
       </GUI>
     </step>
@@ -1508,85 +1464,8 @@
         <case_insensitive>Y</case_insensitive>
         </field>      </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>66</xloc>
-      <yloc>88</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>classify</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;FUNCTIONS&#xa;&#x2f;&#x2a;&#xa;function parse_url&#x28;url&#x29; &#x7b;&#xa;	var match &#x3d; url.match&#x28;&#x2f;&#x5e;&#x28;https&#x3f;&#x5c;&#x3a;&#x29;&#x5c;&#x2f;&#x5c;&#x2f;&#x28;&#x28;&#x5b;&#x5e;&#x3a;&#x5c;&#x2f;&#x3f;&#x23;&#x5d;&#x2a;&#x29;&#x28;&#x3f;&#x3a;&#x5c;&#x3a;&#x28;&#x5b;0-9&#x5d;&#x2b;&#x29;&#x29;&#x3f;&#x29;&#x28;&#x5c;&#x2f;&#x5b;&#x5e;&#x3f;&#x23;&#x5d;&#x2a;&#x7c;&#x29;&#x28;&#x5c;&#x3f;&#x5b;&#x5e;&#x23;&#x5d;&#x2a;&#x7c;&#x29;&#x28;&#x23;.&#x2a;&#x7c;&#x29;&#x24;&#x2f;&#x29;&#x3b;&#xa;    return match &#x26;&#x26; &#x7b;&#xa;        protocol&#x3a; match&#x5b;1&#x5d;,&#xa;        host&#x3a; match&#x5b;2&#x5d;,&#xa;        hostname&#x3a; match&#x5b;3&#x5d;,&#xa;        port&#x3a; match&#x5b;4&#x5d;,&#xa;        path&#x3a; match&#x5b;5&#x5d;,&#xa;        query&#x3a; match&#x5b;6&#x5d;,&#xa;        fragment&#x3a; match&#x5b;7&#x5d;&#xa;    &#x7d;&#xa;&#x7d;&#xa;&#x2a;&#x2f;&#xa;function parse_url&#x28;url&#x29; &#x7b;&#xa;	var match &#x3d; url.match&#x28;&#x2f;&#x5e;&#x28;http&#x7c;https&#x7c;ftp&#x29;&#x3f;&#x28;&#x3f;&#x3a;&#x5b;&#x5c;&#x3a;&#x5c;&#x2f;&#x5d;&#x2a;&#x29;&#x28;&#x5b;a-z0-9&#x5c;.-&#x5d;&#x2a;&#x29;&#x28;&#x3f;&#x3a;&#x5c;&#x3a;&#x28;&#x5b;0-9&#x5d;&#x2b;&#x29;&#x29;&#x3f;&#x28;&#x5c;&#x2f;&#x5b;&#x5e;&#x3f;&#x23;&#x5d;&#x2a;&#x29;&#x3f;&#x28;&#x3f;&#x3a;&#x5c;&#x3f;&#x28;&#x5b;&#x5e;&#x23;&#x5d;&#x2a;&#x29;&#x29;&#x3f;&#x28;&#x3f;&#x3a;&#x23;&#x28;.&#x2a;&#x29;&#x29;&#x3f;&#x24;&#x2f;i&#x29;&#x3b;&#xa;	var ret   &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;&#xa;	ret&#x5b;&#x27;protocol&#x27;&#x5d; &#x3d; &#x27;&#x27;&#x3b;&#xa;	ret&#x5b;&#x27;host&#x27;&#x5d;     &#x3d; match&#x5b;2&#x5d;&#x3b;&#xa;	ret&#x5b;&#x27;port&#x27;&#x5d;     &#x3d; &#x27;&#x27;&#x3b;&#xa;	ret&#x5b;&#x27;path&#x27;&#x5d;     &#x3d; &#x27;&#x27;&#x3b;&#xa;	ret&#x5b;&#x27;query&#x27;&#x5d;    &#x3d; &#x27;&#x27;&#x3b;&#xa;	ret&#x5b;&#x27;fragment&#x27;&#x5d; &#x3d; &#x27;&#x27;&#x3b;&#xa;	&#xa;	if&#x28;match&#x5b;1&#x5d;&#x29;&#x7b;&#xa;		ret&#x5b;&#x27;protocol&#x27;&#x5d; &#x3d; match&#x5b;1&#x5d;&#x3b;&#xa;	&#x7d;&#xa;&#xa;	if&#x28;match&#x5b;3&#x5d;&#x29;&#x7b;&#xa;		ret&#x5b;&#x27;port&#x27;&#x5d;     &#x3d; match&#x5b;3&#x5d;&#x3b;&#xa;	&#x7d;&#xa;&#xa;	if&#x28;match&#x5b;4&#x5d;&#x29;&#x7b;&#xa;		ret&#x5b;&#x27;path&#x27;&#x5d;     &#x3d; match&#x5b;4&#x5d;&#x3b;&#xa;	&#x7d;&#xa;&#xa;	if&#x28;match&#x5b;5&#x5d;&#x29;&#x7b;&#xa;		ret&#x5b;&#x27;query&#x27;&#x5d;    &#x3d; match&#x5b;5&#x5d;&#x3b;&#xa;	&#x7d;&#xa;&#xa;	if&#x28;match&#x5b;6&#x5d;&#x29;&#x7b;&#xa;		ret&#x5b;&#x27;fragment&#x27;&#x5d; &#x3d; match&#x5b;6&#x5d;&#x3b;&#xa;	&#x7d;&#xa;&#xa;	return ret&#x3b;&#xa;&#x7d;&#xa;&#xa;&#x2f;&#x2f; KONFIG VARIABLES&#xa;var regexp_host_internal &#x3d; new RegExp&#x28;&#x27;&#x5e;http&#x5b;&#x5e;&#x5c;.&#x5d;&#x2a;&#x5c;.theafh&#x5c;.net&#x27;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; DEFINING VARIBALES&#xa;lables           &#x3d; new Array&#x28;&#x29;&#x3b;&#xa;var lcnt         &#x3d; 0&#x3b;&#xa;var label_str    &#x3d; &#x27;&#x27;&#x3b;&#xa;var i            &#x3d; 0&#x3b;&#xa;var ext_ref_host &#x3d; &#x27;&#x27;&#x3b;&#xa;var int_req_url  &#x3d; req_url&#x3b;&#xa;&#xa;&#x2f;&#x2f; STARTING CLASSIFICATION OF REQUEST URL TYPES&#xa;&#x2f;&#x2f; url labeling &#x28;req_url&#x29;&#xa;req_arr &#x3d; new Array&#x28;&#x29;&#x3b;&#xa;&#xa;req_arr&#x5b;0&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;0&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.hit.layout&#x22;&#x3b;&#xa;req_arr&#x5b;0&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;yes&#x22;&#x3b;&#xa;req_arr&#x5b;0&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x27;&#x5e;&#x5c;&#x2f;&#x28;wp-includes&#x5c;&#x2f;&#x7c;wp-content&#x5c;&#x2f;themes&#x7c;wp-content&#x5c;&#x2f;plugins&#x29;&#x27;&#x29;&#x3b;&#xa;&#xa;req_arr&#x5b;1&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;1&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.hit.layout&#x22;&#x3b;&#xa;req_arr&#x5b;1&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;yes&#x22;&#x3b;&#xa;req_arr&#x5b;1&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x27;&#x5e;&#x5c;&#x2f;favicon&#x5c;.ico&#x27;&#x29;&#x3b;&#xa;&#xa;req_arr&#x5b;2&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;2&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.hit.layout&#x22;&#x3b;&#xa;req_arr&#x5b;2&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;yes&#x22;&#x3b;&#xa;req_arr&#x5b;2&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x27;&#x5e;&#x5c;&#x2f;.&#x2a;&#x5c;.&#x28;css&#x7c;js&#x7c;woff&#x7c;ttf&#x29;&#x27;&#x29;&#x3b;&#xa;&#xa;req_arr&#x5b;3&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;3&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.admin&#x22;&#x3b;&#xa;req_arr&#x5b;3&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;yes&#x22;&#x3b;&#xa;req_arr&#x5b;3&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x27;&#x28;admin&#x7c;login&#x7c;xmlrpc&#x5c;.php&#x7c;preview&#x3d;true&#x7c;wp-cron&#x29;&#x27;&#x29;&#x3b;&#xa;&#xa;req_arr&#x5b;4&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;4&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.hit.img&#x22;&#x3b;&#xa;req_arr&#x5b;4&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;yes&#x22;&#x3b;&#xa;req_arr&#x5b;4&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x27;&#x5e;&#x5c;&#x2f;wp-content&#x5c;&#x2f;uploads&#x5c;&#x2f;.&#x2a;&#x5c;.&#x28;png&#x7c;gif&#x7c;jpg&#x7c;jepg&#x29;&#x27;&#x29;&#x3b;&#xa;&#xa;req_arr&#x5b;5&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;5&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.hit.feed&#x22;&#x3b;&#xa;req_arr&#x5b;5&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;yes&#x22;&#x3b;&#xa;req_arr&#x5b;5&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x2f;&#x5c;&#x2f;feed&#x5c;&#x2f;&#x2f;&#x29;&#x3b;&#xa;&#xa;req_arr&#x5b;6&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;6&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.pi.search&#x22;&#x3b;&#xa;req_arr&#x5b;6&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;yes&#x22;&#x3b;&#xa;req_arr&#x5b;6&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x2f;&#x5e;&#x5c;&#x2f;&#x5c;&#x3f;s&#x3d;.&#x2a;&#x2f;&#x29;&#x3b;&#xa;&#xa;req_arr&#x5b;7&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;7&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.pi.cat&#x22;&#x3b;&#xa;req_arr&#x5b;7&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;no&#x22;&#x3b;&#xa;req_arr&#x5b;7&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x27;&#x5e;&#x5c;&#x2f;&#x28;kat&#x7c;cat&#x29;&#x5c;&#x2f;&#x27;&#x29;&#x3b;&#xa;&#xa;req_arr&#x5b;8&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;8&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.pi.tag&#x22;&#x3b;&#xa;req_arr&#x5b;8&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;no&#x22;&#x3b;&#xa;req_arr&#x5b;8&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x27;&#x5e;&#x5c;&#x2f;tag&#x5c;&#x2f;&#x27;&#x29;&#x3b;&#xa;&#xa;req_arr&#x5b;9&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;9&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.robots_txt&#x22;&#x3b;&#xa;req_arr&#x5b;9&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;yes&#x22;&#x3b;&#xa;req_arr&#x5b;9&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x2f;&#x5e;&#x5c;&#x2f;robots&#x5c;.txt&#x24;&#x2f;&#x29;&#x3b;&#xa;&#xa;req_arr&#x5b;10&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;10&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.pi.page&#x22;&#x3b;&#xa;req_arr&#x5b;10&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;yes&#x22;&#x3b;&#xa;req_arr&#x5b;10&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x2f;&#x5e;&#x5c;&#x2f;&#x5c;&#x3f;&#x28;p&#x3d;&#x7c;page_id&#x3d;&#x29;&#x5b;0-9&#x5d;&#x2a;&#x2f;&#x29;&#x3b; &#xa;&#xa;req_arr&#x5b;11&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;11&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.pi.author&#x22;&#x3b;&#xa;req_arr&#x5b;11&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;yes&#x22;&#x3b;&#xa;req_arr&#x5b;11&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x2f;&#x5e;&#x5c;&#x2f;&#x28;author&#x5c;&#x2f;&#x7c;&#x5c;&#x3f;author&#x3d;&#x5b;0-9&#x5d;&#x2a;&#x29;&#x2f;&#x29;&#x3b; &#xa;&#xa;req_arr&#x5b;12&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;12&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.pi.home&#x22;&#x3b;&#xa;req_arr&#x5b;12&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;no&#x22;&#x3b;&#xa;req_arr&#x5b;12&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x2f;&#x5e;&#x5c;&#x2f;&#x28;&#x5c;&#x3f;&#x5b;&#x5e;&#x5c;&#x2f;&#x5d;&#x2a;&#x29;&#x3f;&#x24;&#x2f;&#x29;&#x3b;&#xa;&#xa;req_arr&#x5b;13&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;13&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.pi.page&#x22;&#x3b;&#xa;req_arr&#x5b;13&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;no&#x22;&#x3b;&#xa;req_arr&#x5b;13&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x2f;&#x5e;&#x5c;&#x2f;&#x5b;&#x5e;&#x5c;&#x3f;&#x5d;&#x2b;&#x5c;&#x2f;&#x28;&#x5c;&#x3f;&#x5b;&#x5e;&#x5c;&#x2f;&#x5d;&#x2a;&#x29;&#x3f;&#x24;&#x2f;&#x29;&#x3b;&#xa;&#xa;req_arr&#x5b;14&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;14&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.pi&#x22;&#x3b;&#xa;req_arr&#x5b;14&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;no&#x22;&#x3b;&#xa;req_arr&#x5b;14&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x2f;&#x5e;&#x5c;&#x2f;.&#x2a;&#x24;&#x2f;&#x29;&#x3b;&#xa;&#xa;req_arr&#x5b;15&#x5d;          &#x3d; new Object&#x28;&#x29;&#x3b;&#xa;req_arr&#x5b;15&#x5d;&#x5b;&#x27;type&#x27;&#x5d;  &#x3d; &#x22;req.hit.download&#x22;&#x3b;&#xa;req_arr&#x5b;15&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d; &#x22;yes&#x22;&#x3b;&#xa;req_arr&#x5b;15&#x5d;&#x5b;&#x27;test&#x27;&#x5d;  &#x3d; new RegExp&#x28;&#x27;&#x5e;&#x5c;&#x2f;wp-content&#x5c;&#x2f;uploads&#x5c;&#x2f;.&#x2a;&#x5c;.&#x28;txt&#x7c;ktr&#x7c;gz&#x7c;csv&#x29;&#x27;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; CLASSIFICATION OF REQUESTS&#xa;&#xa;for &#x28;i &#x3d; 0&#x3b; i &#x3c; req_arr.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;	if&#x28;req_arr&#x5b;i&#x5d;&#x5b;&#x27;test&#x27;&#x5d;.test&#x28;req_url&#x29;&#x29;&#x7b;&#xa;		lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; req_arr&#x5b;i&#x5d;&#x5b;&#x27;type&#x27;&#x5d;&#x3b;&#xa;&#xa;		&#x2f;&#x2f;removing query parts from requested URLs WHEN &#x22;query&#x22; &#x3d;&#x3d; &#x22;no&#x22;&#xa;		if&#x28;req_arr&#x5b;i&#x5d;&#x5b;&#x27;query&#x27;&#x5d; &#x3d;&#x3d; &#x27;no&#x27;&#x29;&#x7b;&#xa;			int_req_url &#x3d; req_url.split&#x28;&#x27;&#x3f;&#x27;,1&#x29;.join&#x28;&#x27;&#x27;&#x29;&#x3b;&#xa;			&#x2f;&#x2f;Alert&#x28;req_url &#x2b; &#x22; -&#x3e; &#x22; &#x2b; int_req_url&#x29;&#x3b;&#xa;		&#x7d;&#xa;		break&#x3b;&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#xa;&#x2f;&#x2f; STARTING CLASSIFICATION OF SOURCES&#xa;&#xa;&#x2f;&#x2f; req_url CONTAINS utm_source&#x3d;twitter.com --&#x3e; twitter referer via BUFFER&#xa;if &#x28;new RegExp&#x28;&#x2f;&#x5c;&#x3f;.&#x2a;utm_source&#x3d;twitter&#x5c;.com&#x2f;&#x29;.test&#x28;req_url&#x29;&#x29;&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext.twit&#x22;&#x3b;&#xa;&#x7d;&#xa;&#x2f;&#x2f; req_url CONTAINS fb_locale&#x3d; --&#x3e; url requestet via facebook &#xa;else if &#x28;new RegExp&#x28;&#x2f;&#x5c;&#x3f;.&#x2a;fb_locale&#x3d;&#x2f;&#x29;.test&#x28;req_url&#x29;&#x29;&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext.fb&#x22;&#x3b;&#xa;&#x7d;&#xa;&#xa;&#x2f;&#x2f; check for &#x22;-&#x22; referer --&#x3e; unknown, mostly direct or sources on https &#x28;eg google, twitter&#x29;&#xa;else if &#x28;new RegExp&#x28;&#x27;&#x5e;-&#x24;&#x27;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;	lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.direct&#x22;&#x3b;&#xa;&#x7d;&#xa;&#xa;&#x2f;&#x2f; check for internal referer&#xa;else if&#x28;regexp_host_internal.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;	&#x2f;&#x2f; check for admin in referer IN internal&#x21; &#x28;mostly hits on laouyt or images&#x29;&#xa;	if &#x28;new RegExp&#x28;&#x27;admin&#x7c;login&#x7c;preview&#x3d;true&#x27;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;		lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.int.admin&#x22;&#x3b;&#xa;	&#x7d;&#xa;	else&#x7b;&#xa;		lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.int&#x22;&#x3b;&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#xa;&#x2f;&#x2f;check for external referer&#xa;else if &#x28;new RegExp&#x28;&#x27;&#x5e;&#x28;http&#x7c;https&#x29;&#x3a;&#x2f;&#x2f;&#x27;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;		&#x2f;&#x2f;set ref host&#xa;		var host_obj &#x3d; parse_url&#x28;ref_url&#x29;&#x3b;&#xa;		ext_ref_host &#x3d; host_obj.host&#x3b;&#xa;&#xa;		&#x2f;&#x2f; check for SOCIAL ref&#xa;		if &#x28;new RegExp&#x28;&#x2f;&#x5c;.facebook&#x5c;.com&#x2f;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext.fb&#x22;&#x3b;&#xa;		&#x7d;&#xa;		else if &#x28;new RegExp&#x28;&#x2f;pinterest&#x5c;.com&#x2f;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext.pin&#x22;&#x3b;&#xa;		&#x7d;&#xa;		else if &#x28;new RegExp&#x28;&#x2f;&#x5c;.twitter&#x5c;.com&#x5c;&#x2f;&#x2f;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext.twit&#x22;&#x3b;&#xa;		&#x7d;&#xa;		else if &#x28;new RegExp&#x28;&#x2f;&#x5c;.xing&#x5c;.com&#x5c;&#x2f;&#x2f;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext.xing&#x22;&#x3b;&#xa;		&#x7d;&#xa;		else if &#x28;new RegExp&#x28;&#x2f;&#x5c;.stackexchange&#x5c;.com&#x5c;&#x2f;&#x7c;&#x5c;&#x2f;stackoverflow&#x5c;.com&#x5c;&#x2f;&#x2f;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext.stck&#x22;&#x3b;&#xa;		&#x7d;&#xa;&#xa;		&#x2f;&#x2f; check for SEARCH ref &#xa;		else if &#x28;new RegExp&#x28;&#x2f;&#x5c;.google&#x5c;.&#x28;&#x5b;a-z&#x5d;&#x7b;2,3&#x7d;&#x7c;&#x5b;a-z&#x5d;&#x7b;2,3&#x7d;&#x5c;.&#x5b;a-z&#x5d;&#x7b;2,3&#x7d;&#x29;&#x5c;&#x2f;&#x2f;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext.google&#x22;&#x3b;&#xa;		&#x7d;&#xa;		else if &#x28;new RegExp&#x28;&#x2f;&#x5c;.suche&#x5c;.t-online&#x5c;.de&#x5c;&#x2f;&#x2f;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext.google&#x22;&#x3b;&#xa;		&#x7d;&#xa;		else if &#x28;new RegExp&#x28;&#x2f;&#x5c;.suche&#x5c;.web&#x5c;.de&#x5c;&#x2f;&#x2f;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext.google&#x22;&#x3b;&#xa;		&#x7d;&#xa;		else if &#x28;new RegExp&#x28;&#x2f;&#x5c;.bing&#x5c;.com&#x5c;&#x2f;&#x2f;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext.bing&#x22;&#x3b;&#xa;		&#x7d;&#xa;		else if &#x28;new RegExp&#x28;&#x2f;&#x5c;.yahoo&#x5c;.com&#x5c;&#x2f;&#x2f;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext.yahoo&#x22;&#x3b;&#xa;		&#x7d;&#xa;		else if &#x28;new RegExp&#x28;&#x2f;&#x5c;.baidu&#x5c;.com&#x5c;&#x2f;&#x2f;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext.baidu&#x22;&#x3b;&#xa;		&#x7d;&#xa;		else if &#x28;new RegExp&#x28;&#x2f;yandex&#x5c;.&#x5b;a-z&#x5d;&#x7b;2,3&#x7d;&#x5c;&#x2f;&#x2f;&#x29;.test&#x28;ref_url&#x29;&#x29;&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext.yandex&#x22;&#x3b;&#xa;		&#x7d;&#xa;		else&#x7b;&#xa;			lables&#x5b;lcnt&#x2b;&#x2b;&#x5d; &#x3d; &#x22;src.ext&#x22;&#x3b;&#xa;		&#x7d;&#xa;&#x7d;&#xa;&#xa;&#x2f;&#x2f; export labels&#xa;label_str &#x3d; lables.join&#x28;&#x27;&#x7c;&#x27;&#x29;&#x3b;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>label_str</name>
-        <rename>labels</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>ext_ref_host</name>
-        <rename>ref_host</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>int_req_url</name>
-        <rename>req_url_canonical</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>477</xloc>
-      <yloc>252</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>filter</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to/>
-<send_false_to/>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>Y</negated>
-   <operator>AND</operator>
-   <leftvalue>labels</leftvalue>
-   <function>CONTAINS</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>layout</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>741</xloc>
-      <yloc>252</yloc>
+      <xloc>68</xloc>
+      <yloc>131</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
