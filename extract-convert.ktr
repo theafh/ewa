@@ -834,7 +834,7 @@
     <compression>None</compression>
     <encoding>US-ASCII</encoding>
     <endedLine/>
-    <fileNameInField>N</fileNameInField>
+    <fileNameInField>Y</fileNameInField>
     <fileNameField>file_name_path</fileNameField>
     <create_parent_folder>N</create_parent_folder>
     <file>
