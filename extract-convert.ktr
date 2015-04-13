@@ -99,37 +99,30 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Regex Split Rows</from><to>Filter &#x22;Broken Rows&#x22;</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter &#x22;Broken Rows&#x22;</from><to>Abort</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter &#x22;Broken Rows&#x22;</from><to>Convert Data</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter &#x22;unknown hosts&#x22;</from><to>Join</to><enabled>Y</enabled> </hop>
   <hop> <from>DB lookup &#x22;host&#x22;</from><to>Filter &#x22;unknown hosts&#x22;</to><enabled>Y</enabled> </hop>
   <hop> <from>Request &#x22;missing hosts&#x22;</from><to>Join</to><enabled>Y</enabled> </hop>
   <hop> <from>Sort by &#x22;ip_id&#x22;</from><to>Split</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter &#x22;unknown hosts&#x22;</from><to>Distribute</to><enabled>Y</enabled> </hop>
   <hop> <from>Distribute</from><to>Request &#x22;missing hosts&#x22;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Split 2</from><to>Sort by &#x22;ip_id&#x22; 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Sort by &#x22;ip_id&#x22; 2</from><to>Merge Join</to><enabled>Y</enabled> </hop>
   <hop> <from>Join</from><to>Split 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Split</from><to>Unique rows</to><enabled>Y</enabled> </hop>
   <hop> <from>Unique rows</from><to>Select values</to><enabled>Y</enabled> </hop>
   <hop> <from>Split</from><to>Blocking Step</to><enabled>Y</enabled> </hop>
   <hop> <from>Blocking Step</from><to>Merge Join</to><enabled>Y</enabled> </hop>
-  <hop> <from>Split 2</from><to>Filter &#x22;new hosts&#x22;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select values</from><to>Add constants</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add constants</from><to>DB lookup &#x22;host&#x22;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Join 2</from><to>Insert &#x2f; Update hosts</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter &#x22;new hosts&#x22;</from><to>Filter &#x22;host ip&#x22;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter &#x22;host ip&#x22;</from><to>Set &#x22;type -&#x3e; ip&#x22;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter &#x22;host ip&#x22;</from><to>Join 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Set &#x22;type -&#x3e; ip&#x22;</from><to>Join 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>IN Acces-Logs</from><to>Regex Split Rows</to><enabled>Y</enabled> </hop>
   <hop> <from>Sessionization</from><to>OUT csvs</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add &#x22;raw_sid&#x22;</from><to>Set field value</to><enabled>Y</enabled> </hop>
-  <hop> <from>Merge Join</from><to>Add &#x22;raw_sid&#x22;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Set field value</from><to>Sort &#x22;sid&#x2b;time&#x22;</to><enabled>Y</enabled> </hop>
   <hop> <from>Sort &#x22;sid&#x2b;time&#x22;</from><to>Sessionization</to><enabled>Y</enabled> </hop>
   <hop> <from>Convert Data</from><to>Sort by &#x22;ip_id&#x22;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge Join</from><to>Sort &#x22;sid&#x2b;time&#x22;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Regex Split Rows</from><to>Filter &#x22;Broken Rows&#x22;</to><enabled>Y</enabled> </hop>
+  <hop> <from>IN Acces-Logs</from><to>Regex Split Rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter &#x22;unknown hosts&#x22;</from><to>Join 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Split 2</from><to>Join 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Join 2</from><to>Sort by &#x22;ip_id&#x22; 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values</from><to>DB lookup &#x22;host&#x22;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Split 2</from><to>Insert &#x2f; Update hosts</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Abort</name>
@@ -147,8 +140,8 @@
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>465</xloc>
-      <yloc>131</yloc>
+      <xloc>709</xloc>
+      <yloc>40</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -180,9 +173,9 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>68</xloc>
-      <yloc>316</yloc>
-      <draw>Y</draw>
+      <xloc>357</xloc>
+      <yloc>439</yloc>
+      <draw>N</draw>
       </GUI>
     </step>
 
@@ -204,8 +197,8 @@
       <compress>Y</compress>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>208</xloc>
-      <yloc>131</yloc>
+      <xloc>220</xloc>
+      <yloc>231</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -225,7 +218,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#x2f;&#x2f; &#x28;&#x5b;0-9&#x5d;&#x7b;1,3&#x7d;&#x5c;.&#x5b;0-9&#x5d;&#x7b;1,3&#x7d;&#x5c;.&#x5b;0-9&#x5d;&#x7b;1,3&#x7d;&#x5c;.&#x5b;0-9&#x5d;&#x7b;1,3&#x7d;&#x29; &#x5b;&#x5c;w-&#x5d;&#x2b; &#x5b;&#x5c;w-&#x5d;&#x2b; &#x5c;&#x5b;&#x28;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x2f;&#x5b;a-z&#x5d;&#x7b;3&#x7d;&#x2f;&#x5b;0-9&#x5d;&#x7b;4&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x29; &#x28;&#x28;&#x3f;&#x3a;-&#x7c;&#x5c;&#x2b;&#x29;&#x5b;0-9&#x5d;&#x7b;4&#x7d;&#x29;&#x5c;&#x5d; &#x22;&#x28;GET&#x7c;HEAD&#x7c;POST&#x29; &#x28;&#x5b;&#x5e;&#x22;&#x5d;&#x2b;&#x29; &#x28;HTTP&#x5b;&#x5e;&#x22;&#x5d;&#x2b;&#x29;&#x22; &#x28;&#x5c;d&#x7b;3&#x7d;&#x29; &#x28;&#x5c;d&#x2b;&#x7c;-&#x29; &#x22;&#x28;&#x28;&#x3f;&#x3a;&#x5c;&#x5c;&#x22;&#x7c;&#x5b;&#x5e;&#x22;&#x5d;&#x29;&#x2a;&#x29;&#x22; &#x22;&#x28;&#x28;&#x3f;&#x3a;&#x5c;&#x5c;&#x22;&#x7c;&#x5b;&#x5e;&#x22;&#x5d;&#x29;&#x2a;&#x29;&#x22;&#xa;&#x2f;&#x2f; &#x28;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x2f;&#x5b;a-z&#x5d;&#x7b;3&#x7d;&#x2f;&#x5b;0-9&#x5d;&#x7b;4&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x3a;&#x5b;0-9&#x5d;&#x7b;2&#x7d;&#x29; &#x28;&#x28;&#x3f;&#x3a;-&#x7c;&#x5c;&#x2b;&#x29;&#x5b;0-9&#x5d;&#x7b;4&#x7d;&#x29;&#xa;&#xa;var date_str  &#x3d; date_time_str&#x3b;&#xa;var agent_str &#x3d; ua&#x2b;&#x22;&#x22;&#x3b;&#xa;var ref_str   &#x3d; ref_url&#x2b;&#x22;&#x22;&#x3b;&#xa;var req_str   &#x3d; req_url&#x2b;&#x22;&#x22;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 0.&#x29; prepare data&#xa;&#xa;&#x2f;&#x2f; 0.1.&#x29; convert textual representation of month names in date string to number string&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;January&#x7c;Jan&#x2f;gi, &#x22;1&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;February&#x7c;Feb&#x2f;gi, &#x22;2&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;March&#x7c;Mar&#x2f;gi, &#x22;3&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;April&#x7c;Apr&#x2f;gi, &#x22;4&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;May&#x2f;gi, &#x22;5&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;June&#x7c;Jun&#x2f;gi, &#x22;6&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;July&#x7c;Jul&#x2f;gi, &#x22;7&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;August&#x7c;Aug&#x2f;gi, &#x22;8&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;September&#x7c;Sep&#x2f;gi, &#x22;9&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;October&#x7c;Oct&#x2f;gi, &#x22;10&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;November&#x7c;Nov&#x2f;gi, &#x22;11&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;December&#x7c;Dec&#x2f;gi, &#x22;12&#x22;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 0.2.&#x29; remove encoding of double qotes &#x27;&#x5c;&#x22;&#x27; -&#x3e; &#x27;&#x22;&#x22;&#x27;&#xa;agent_str &#x3d; agent_str.replace&#x28;&#x2f;&#x5c;&#x5c;&#x22;&#x2f;g, &#x27;&#x22;&#x27;&#x29;&#x3b;&#xa;ref_str   &#x3d; ref_str.replace&#x28;&#x2f;&#x5c;&#x5c;&#x22;&#x2f;g, &#x27;&#x22;&#x27;&#x29;&#x3b;&#xa;req_str   &#x3d; req_str.replace&#x28;&#x2f;&#x5c;&#x5c;&#x22;&#x2f;g, &#x27;&#x22;&#x27;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; construct a date object from the string elements&#xa;&#x2f;&#x2f; 1.1.&#x29; splitting the date string with character class &#x22;&#x2f;&#x3a; &#x22;&#xa;var parts &#x3d; date_str.split&#x28;&#x2f;&#x5b;&#x5c;&#x2f;&#x3a; &#x5d;&#x2f;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.2.&#x29; set date&#xa;var dt &#x3d; new Date&#x28;parts&#x5b;2&#x5d;,parts&#x5b;1&#x5d;-1,parts&#x5b;0&#x5d;&#x29;&#x3b; &#x2f;&#x2f;month is zero based&#x21;&#x21;&#x21; &#x28;-&#x3e; &#x22;-1&#x22;&#x29;&#xa;var tempdate &#x3d;  dt.getFullYear&#x28;&#x29; &#x2b; &#x22;.&#x22; &#x2b; &#x28;dt.getMonth&#x28;&#x29;&#x2b;1&#x29; &#x2b; &#x22;.&#x22; &#x2b; dt.getDate&#x28;&#x29;&#x3b; &#x2f;&#x2f;&#x28;month is zero based&#x21; and also used for SID&#x29;&#xa;&#xa;&#x2f;&#x2f; 1.3.&#x29; set time&#xa;    dt.setHours&#x28;parts&#x5b;3&#x5d;,parts&#x5b;4&#x5d;,parts&#x5b;5&#x5d;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.4.&#x29; UTC time extraction and calculation&#xa;&#x2f;&#x2f; http&#x3a;&#x2f;&#x2f;www.techrepublic.com&#x2f;article&#x2f;convert-the-local-time-to-another-time-zone-with-this-javascript&#x2f;&#xa;&#x2f;&#x2f;var utc_str &#x3d; parts&#x5b;5&#x5d;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.5.&#x29; isolates the UTC timezone offset&#xa;&#x2f;&#x2f;date_str &#x3d; date_str.replace&#x28;&#x2f;-&#x2f;g, &#x22;- &#x22;&#x29;&#x3b;&#xa;&#x2f;&#x2f;date_str &#x3d; date_str.replace&#x28;&#x2f;&#x5c;&#x2b;&#x2f;g, &#x22;&#x2b; &#x22;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.6.&#x29; calculate the unix timestamp from date&#xa;var timestamp &#x3d; dt.getTime&#x28;&#x29;&#x3b;&#xa;    timestamp &#x3d; Math.floor&#x28;timestamp &#x2f; 1000&#x29;&#x3b; &#x2f;&#x2f; convert the millisecond JS timestamp in seconds -&#x3e; unix timestamp&#xa;&#xa;&#x2f;&#x2f; 2.1.&#x29; calculate the MD5 sum of the IP for data privacy and here in JS to safe extra step&#xa;var ip_id &#x3d; Packages.org.apache.commons.codec.digest.DigestUtils.md5Hex&#x28;ip&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 2.2.&#x29; calculate the MD5 sum of day&#x2b;ua&#x2b;ip as tmp sid&#xa;var sid &#x3d; Packages.org.apache.commons.codec.digest.DigestUtils.md5Hex&#x28;tempdate&#x2b;ua&#x2b;ip&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 3.0.&#x29; build file name of CSV file using PATH and date infos &#xa;var in_file_arr &#x3d; in_file_name.split&#x28;&#x22;-access&#x22;&#x29;&#x3b;&#xa;var website_host &#x3d; in_file_arr&#x5b;0&#x5d;&#x3b;&#xa;var file_name &#x3d; getVariable&#x28;&#x22;PROJECT_EWA_CSV_PATH&#x22;, &#x22;&#x22;&#x29; &#x2b; website_host &#x2b; &#x22;-&#x22; &#x2b; tempdate&#x3b;</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;var date_str  &#x3d; date_time_str&#x3b;&#xa;var agent_str &#x3d; ua&#x2b;&#x22;&#x22;&#x3b;&#xa;var ref_str   &#x3d; ref_url&#x2b;&#x22;&#x22;&#x3b;&#xa;var req_str   &#x3d; req_url&#x2b;&#x22;&#x22;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 0.&#x29; prepare data&#xa;&#xa;&#x2f;&#x2f; 0.1.&#x29; convert textual representation of month names in date string to number string&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;January&#x7c;Jan&#x2f;gi, &#x22;1&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;February&#x7c;Feb&#x2f;gi, &#x22;2&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;March&#x7c;Mar&#x2f;gi, &#x22;3&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;April&#x7c;Apr&#x2f;gi, &#x22;4&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;May&#x2f;gi, &#x22;5&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;June&#x7c;Jun&#x2f;gi, &#x22;6&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;July&#x7c;Jul&#x2f;gi, &#x22;7&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;August&#x7c;Aug&#x2f;gi, &#x22;8&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;September&#x7c;Sep&#x2f;gi, &#x22;9&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;October&#x7c;Oct&#x2f;gi, &#x22;10&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;November&#x7c;Nov&#x2f;gi, &#x22;11&#x22;&#x29;&#x3b;&#xa;date_str &#x3d; date_str.replace&#x28;&#x2f;December&#x7c;Dec&#x2f;gi, &#x22;12&#x22;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 0.2.&#x29; remove encoding of double qotes &#x27;&#x5c;&#x22;&#x27; -&#x3e; &#x27;&#x22;&#x22;&#x27;&#xa;agent_str &#x3d; agent_str.replace&#x28;&#x2f;&#x5c;&#x5c;&#x22;&#x2f;g, &#x27;&#x22;&#x27;&#x29;&#x3b;&#xa;ref_str   &#x3d; ref_str.replace&#x28;&#x2f;&#x5c;&#x5c;&#x22;&#x2f;g, &#x27;&#x22;&#x27;&#x29;&#x3b;&#xa;req_str   &#x3d; req_str.replace&#x28;&#x2f;&#x5c;&#x5c;&#x22;&#x2f;g, &#x27;&#x22;&#x27;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; construct a date object from the string elements&#xa;&#x2f;&#x2f; 1.1.&#x29; splitting the date string with character class &#x22;&#x2f;&#x3a; &#x22;&#xa;var parts &#x3d; date_str.split&#x28;&#x2f;&#x5b;&#x5c;&#x2f;&#x3a; &#x5d;&#x2f;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.2.&#x29; set date&#xa;var dt &#x3d; new Date&#x28;parts&#x5b;2&#x5d;,&#x28;parts&#x5b;1&#x5d;-1&#x29;,parts&#x5b;0&#x5d;&#x29;&#x3b; &#x2f;&#x2f;month is zero based&#x21;&#x21;&#x21; &#x28;-&#x3e; &#x22;-1&#x22;&#x29;&#xa;var tempdate &#x3d; date2str&#x28;dt,&#x22;yyyy.MM.dd&#x22;&#x29;&#x3b;            &#x2f;&#x2f;used for session AND output file names&#xa;&#xa;&#x2f;&#x2f; 1.3.&#x29; set time&#xa;    dt.setHours&#x28;parts&#x5b;3&#x5d;,parts&#x5b;4&#x5d;,parts&#x5b;5&#x5d;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.4.&#x29; UTC time extraction and calculation&#xa;&#x2f;&#x2f; http&#x3a;&#x2f;&#x2f;www.techrepublic.com&#x2f;article&#x2f;convert-the-local-time-to-another-time-zone-with-this-javascript&#x2f;&#xa;&#x2f;&#x2f;var utc_str &#x3d; parts&#x5b;5&#x5d;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.5.&#x29; isolates the UTC timezone offset&#xa;&#x2f;&#x2f;date_str &#x3d; date_str.replace&#x28;&#x2f;-&#x2f;g, &#x22;- &#x22;&#x29;&#x3b;&#xa;&#x2f;&#x2f;date_str &#x3d; date_str.replace&#x28;&#x2f;&#x5c;&#x2b;&#x2f;g, &#x22;&#x2b; &#x22;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 1.6.&#x29; calculate the unix timestamp from date&#xa;var timestamp &#x3d; dt.getTime&#x28;&#x29;&#x3b;&#xa;    timestamp &#x3d; Math.floor&#x28;timestamp &#x2f; 1000&#x29;&#x3b; &#x2f;&#x2f; convert the millisecond JS timestamp in seconds -&#x3e; unix timestamp&#xa;&#xa;&#x2f;&#x2f; 2.1.&#x29; calculate the MD5 sum of the IP for data privacy and here in JS to safe extra step&#xa;var ip_id &#x3d; Packages.org.apache.commons.codec.digest.DigestUtils.md5Hex&#x28;ip&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 2.2.&#x29; calculate the MD5 sum of day&#x2b;ua&#x2b;ip as tmp sid&#xa;var sid &#x3d; Packages.org.apache.commons.codec.digest.DigestUtils.md5Hex&#x28;tempdate&#x2b;ua&#x2b;ip&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; 3.0.&#x29; build file name of CSV file using PATH and date infos &#xa;var in_file_arr &#x3d; in_file_name.split&#x28;&#x22;-access&#x22;&#x29;&#x3b;&#xa;var website_host &#x3d; in_file_arr&#x5b;0&#x5d;&#x3b;&#xa;var file_name &#x3d; getVariable&#x28;&#x22;PROJECT_EWA_CSV_PATH&#x22;, &#x22;&#x22;&#x29; &#x2b; website_host &#x2b; &#x22;-&#x22; &#x2b; tempdate&#x3b;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>dt</name>
         <rename>date</rename>
         <type>Date</type>
@@ -280,16 +273,16 @@
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
-      </field>      <field>        <name>tempdate</name>
-        <rename>tempdate</rename>
+      </field>      <field>        <name>sid</name>
+        <rename>raw_sid</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>346</xloc>
-      <yloc>25</yloc>
+      <xloc>493</xloc>
+      <yloc>132</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -342,8 +335,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>68</xloc>
-      <yloc>410</yloc>
+      <xloc>78</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -361,8 +354,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>68</xloc>
-      <yloc>601</yloc>
+      <xloc>220</xloc>
+      <yloc>513</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -394,8 +387,8 @@
     </arguments>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>68</xloc>
-      <yloc>601</yloc>
+      <xloc>85</xloc>
+      <yloc>737</yloc>
       <draw>N</draw>
       </GUI>
     </step>
@@ -423,8 +416,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>465</xloc>
-      <yloc>25</yloc>
+      <xloc>493</xloc>
+      <yloc>40</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -441,7 +434,7 @@
            <schema_name/>
            </partitioning>
 <send_true_to>Set &#x22;type -&#x3e; ip&#x22;</send_true_to>
-<send_false_to>Join 2</send_false_to>
+<send_false_to>Join 3</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -457,9 +450,9 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>346</xloc>
-      <yloc>501</yloc>
-      <draw>Y</draw>
+      <xloc>637</xloc>
+      <yloc>513</yloc>
+      <draw>N</draw>
       </GUI>
     </step>
 
@@ -492,9 +485,9 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>346</xloc>
-      <yloc>403</yloc>
-      <draw>Y</draw>
+      <xloc>596</xloc>
+      <yloc>439</yloc>
+      <draw>N</draw>
       </GUI>
     </step>
 
@@ -510,7 +503,7 @@
            <schema_name/>
            </partitioning>
 <send_true_to>Distribute</send_true_to>
-<send_false_to>Join</send_false_to>
+<send_false_to>Join 2</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -521,8 +514,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>68</xloc>
-      <yloc>501</yloc>
+      <xloc>78</xloc>
+      <yloc>474</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -550,8 +543,37 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>738</xloc>
-      <yloc>130</yloc>
+      <xloc>493</xloc>
+      <yloc>132</yloc>
+      <draw>N</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter rows 2</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to/>
+<send_false_to/>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>line</leftvalue>
+ <function>CONTAINS</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>Google</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>78</xloc>
+      <yloc>40</yloc>
       <draw>N</draw>
       </GUI>
     </step>
@@ -648,8 +670,8 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>738</xloc>
-      <yloc>26</yloc>
+      <xloc>78</xloc>
+      <yloc>40</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -700,8 +722,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>598</xloc>
-      <yloc>559</yloc>
+      <xloc>709</xloc>
+      <yloc>439</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -719,8 +741,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>208</xloc>
-      <yloc>501</yloc>
+      <xloc>493</xloc>
+      <yloc>513</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -738,9 +760,28 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>473</xloc>
-      <yloc>559</yloc>
+      <xloc>220</xloc>
+      <yloc>439</yloc>
       <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Join 3</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>631</xloc>
+      <yloc>513</yloc>
+      <draw>N</draw>
       </GUI>
     </step>
 
@@ -766,8 +807,8 @@
     </keys_2>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>208</xloc>
-      <yloc>220</yloc>
+      <xloc>357</xloc>
+      <yloc>278</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -998,8 +1039,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>738</xloc>
-      <yloc>321</yloc>
+      <xloc>709</xloc>
+      <yloc>278</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1139,8 +1180,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>601</xloc>
-      <yloc>25</yloc>
+      <xloc>357</xloc>
+      <yloc>40</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1151,7 +1192,7 @@
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>20</copies>
+    <copies>22</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
@@ -1160,7 +1201,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;&#x2f;&#x2f;var dns&#x3d;resolveIP&#x28;ip, &#x27;IP&#x27;&#x29;&#x3b;&#xa;&#xa;var addr &#x3d; Packages.java.net.InetAddress.getByName&#x28;ip&#x29;&#x3b;&#xa;var host &#x3d; addr.getHostName&#x28;&#x29;&#x3b;&#xa;&#xa;var date &#x3d; new Date&#x28;&#x29;&#x3b;&#xa;&#xa;var new_host &#x3d; true&#x3b;</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;var addr &#x3d; Packages.java.net.InetAddress.getByName&#x28;ip&#x29;&#x3b;&#xa;var host &#x3d; addr.getHostName&#x28;&#x29;&#x3b;&#xa;&#x2f;&#x2f;var host_new &#x3d; resolveIP&#x28;ip,&#x27;IP&#x27;&#x29;&#x3b;&#xa;&#x2f;&#x2f;Alert&#x28;&#x22;host&#x3a; &#x22;&#x2b; host &#x2b; &#x22; - &#x22; &#x2b; &#x22;host_new&#x3a; &#x22; &#x2b;host_new&#x29;&#x3b;&#xa;&#xa;var date &#x3d; new Date&#x28;&#x29;&#x3b;&#xa;&#xa;var type &#x3d; &#x27;host&#x27;&#x3b;&#xa;&#xa;if&#x28; String&#x28;ip&#x29; &#x3d;&#x3d;&#x3d; String&#x28;host&#x29; &#x29;&#x7b;&#xa;	type &#x3d; &#x27;ip&#x27;&#x3b;&#xa;&#x7d;&#xa;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>host</name>
         <rename>host</rename>
         <type>String</type>
@@ -1173,16 +1214,16 @@
         <length>-1</length>
         <precision>-1</precision>
         <replace>Y</replace>
-      </field>      <field>        <name>new_host</name>
-        <rename>new_host</rename>
-        <type>Boolean</type>
+      </field>      <field>        <name>type</name>
+        <rename>type</rename>
+        <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>Y</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>208</xloc>
-      <yloc>601</yloc>
+      <xloc>357</xloc>
+      <yloc>513</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1216,8 +1257,8 @@
     </arguments>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>208</xloc>
-      <yloc>601</yloc>
+      <xloc>225</xloc>
+      <yloc>737</yloc>
       <draw>N</draw>
       </GUI>
     </step>
@@ -1250,11 +1291,11 @@
       </remove>      <remove>        <name>file_name_path</name>
       </remove>      <remove>        <name>website</name>
       </remove>      <remove>        <name>sid</name>
-      </remove>      <remove>        <name>tempdate</name>
+      </remove>      <remove>        <name>raw_sid</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>68</xloc>
-      <yloc>220</yloc>
+      <xloc>78</xloc>
+      <yloc>278</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1274,7 +1315,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;&#x2f;&#x2a;&#xa;setVariable&#x28;&#x22;last_sid&#x22;,sid, &#x22;r&#x22;&#x29;&#x3b;&#xa;getVariable&#x28;&#x22;last_sid&#x22;, default&#x29;&#x3b;&#xa;&#x2a;&#x2f;&#xa;&#xa;var last_sid       &#x3d; getVariable&#x28;&#x22;last_sid&#x22;,&#x22;&#x22;&#x29;&#x3b;&#xa;var raw_sid        &#x3d; getVariable&#x28;&#x22;last_raw_sid&#x22;,&#x22;&#x22;&#x29;&#x3b;&#xa;var last_timestamp &#x3d; getVariable&#x28;&#x22;last_timestamp&#x22;,&#x22;&#x22;&#x29;&#x3b;&#xa;var curr_sid       &#x3d; Packages.org.apache.commons.codec.digest.DigestUtils.md5Hex&#x28;tempdate&#x2b;ua&#x2b;ip&#x29;&#x3b;&#xa;&#xa;var write_sid      &#x3d; sid&#x3b;&#xa;&#xa;&#x2f;&#x2f;innerhalb einer bis dato laufenden raw-session aber NICHT an der ersten stelle -&#x3e; x&#x2b;&#xa;if&#x28;last_sid &#x3d;&#x3d; curr_sid &#x26;&#x26; raw_sid &#x3d;&#x3d; curr_sid&#x29;&#x7b;&#xa;	&#x2f;&#x2f;session length in seconds 30 minutes &#x3d;&#x3d; 30&#x2a;60 &#x3d; 1800&#xa;	&#x2f;&#x2f;die session ist abgelaufen und wird neu gestartet&#xa;	if&#x28;last_timestamp &#x3c; &#x28;timestamp-1800&#x29;&#x29;&#x7b;&#xa;		&#x2f;&#x2f;calculate the MD5 sum of day&#x2b;ua&#x2b;ip as tmp sid&#xa;		&#x2f;&#x2f;es wird eine neue session gebaut, weil die laufende abgelaufen ist&#xa;		var new_sid &#x3d; Packages.org.apache.commons.codec.digest.DigestUtils.md5Hex&#x28;tempdate&#x2b;ua&#x2b;ip&#x2b;timestamp&#x29;&#x3b;&#xa;		setVariable&#x28;&#x22;last_sid&#x22;,new_sid, &#x22;r&#x22;&#x29;&#x3b;&#xa;		&#x2f;&#x2f;setVariable&#x28;&#x22;last_raw_sid&#x22;,sid, &#x22;r&#x22;&#x29;&#x3b; &#x2f;&#x2f;ist ja noch gesetzt&#xa;		setVariable&#x28;&#x22;last_timestamp&#x22;,timestamp, &#x22;r&#x22;&#x29;&#x3b;&#xa;		write_sid &#x3d; new_sid&#x3b;&#xa;	&#x7d;&#xa;	&#x2f;&#x2f;noch innerhalb des zeitfensters&#xa;	else&#x7b;&#xa;		setVariable&#x28;&#x22;last_sid&#x22;,last_sid, &#x22;r&#x22;&#x29;&#x3b; &#x2f;&#x2f;es wird keine neue ID gebaut, weil die laufende neue session noch g&#xfc;ltig ist&#xa;		&#x2f;&#x2f;setVariable&#x28;&#x22;last_raw_sid&#x22;,sid, &#x22;r&#x22;&#x29;&#x3b; &#x2f;&#x2f;ist ja noch gesetzt&#xa;		setVariable&#x28;&#x22;last_timestamp&#x22;,timestamp, &#x22;r&#x22;&#x29;&#x3b;&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#x2f;&#x2f;innerhalb einer raw-session, die neu gestartet wurde&#xa;else if&#x28;last_sid &#x21;&#x3d; curr_sid &#x26;&#x26; raw_sid &#x3d;&#x3d; curr_sid&#x29;&#x7b;&#xa;	&#x2f;&#x2f;session length in seconds 30 minutes &#x3d;&#x3d; 30&#x2a;60 &#x3d; 1800&#xa;	&#x2f;&#x2f;die neue session ist aber AUCH abgelaufen&#xa;	if&#x28; last_timestamp &#x3c; &#x28;timestamp-1800&#x29;&#x29;&#x7b;&#xa;		&#x2f;&#x2f;calculate the MD5 sum of day&#x2b;ua&#x2b;ip as tmp sid&#xa;		var new_sid &#x3d; Packages.org.apache.commons.codec.digest.DigestUtils.md5Hex&#x28;tempdate&#x2b;ua&#x2b;ip&#x2b;timestamp&#x29;&#x3b;&#xa;		setVariable&#x28;&#x22;last_sid&#x22;,new_sid, &#x22;r&#x22;&#x29;&#x3b;&#xa;		&#x2f;&#x2f;setVariable&#x28;&#x22;last_raw_sid&#x22;,sid, &#x22;r&#x22;&#x29;&#x3b; &#x2f;&#x2f;ist ja noch gesetzt&#xa;		setVariable&#x28;&#x22;last_timestamp&#x22;,timestamp, &#x22;r&#x22;&#x29;&#x3b;&#xa;		write_sid &#x3d; new_sid&#x3b;&#xa;	&#x7d;&#xa;	&#x2f;&#x2f;noch innerhalb des zeitfensters ABER neue sid von fr&#xfc;herer zeile&#xa;	else&#x7b;&#xa;		setVariable&#x28;&#x22;last_sid&#x22;,last_sid, &#x22;r&#x22;&#x29;&#x3b;&#xa;		&#x2f;&#x2f;setVariable&#x28;&#x22;last_raw_sid&#x22;,sid, &#x22;r&#x22;&#x29;&#x3b; &#x2f;&#x2f;ist ja noch gesetzt&#xa;		setVariable&#x28;&#x22;last_timestamp&#x22;,timestamp, &#x22;r&#x22;&#x29;&#x3b;&#xa;		write_sid &#x3d; last_sid&#x3b; &#x2f;&#x2f; in last_sid is the OLD, NEW sid from last line&#x28;s&#x29;&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#x2f;&#x2f; last_sid &#x21;&#x3d; curr_sid &#x26;&#x26; raw_sid &#x3d;&#x3d; curr_sid&#xa;else if &#x28;last_sid &#x21;&#x3d; curr_sid &#x26;&#x26; raw_sid &#x21;&#x3d; curr_sid&#x29;&#x7b;&#xa;	setVariable&#x28;&#x22;last_sid&#x22;,sid, &#x22;r&#x22;&#x29;&#x3b;&#xa;	setVariable&#x28;&#x22;last_raw_sid&#x22;,sid, &#x22;r&#x22;&#x29;&#x3b;&#xa;	setVariable&#x28;&#x22;last_timestamp&#x22;,timestamp, &#x22;r&#x22;&#x29;&#x3b;&#xa;&#x7d;&#xa;&#x2f;&#x2f; sollte es NICHT geben&#x21;&#x21;&#x21;&#x21;&#x21;&#x21;&#x21;&#x21;&#x21;&#x21;&#x21;&#x21;&#x21;&#x21;&#x21;&#x21;&#x21;&#x21;&#x21;&#xa;else&#x7b;&#xa;	trans_Status &#x3d;  ERROR_TRANSFORMATION&#x3b;&#xa;&#x7d;</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;var last_sid       &#x3d; getVariable&#x28;&#x22;last_sid&#x22;,&#x22;&#x22;&#x29;&#x3b;&#xa;var raw_sid        &#x3d; getVariable&#x28;&#x22;last_raw_sid&#x22;,&#x22;&#x22;&#x29;&#x3b;&#xa;var last_timestamp &#x3d; getVariable&#x28;&#x22;last_timestamp&#x22;,&#x22;&#x22;&#x29;&#x3b;&#xa;&#xa;var tempdate       &#x3d; date2str&#x28;date,&#x22;yyyy.MM.dd&#x22;&#x29;&#x3b;&#xa;var curr_sid       &#x3d; Packages.org.apache.commons.codec.digest.DigestUtils.md5Hex&#x28;tempdate&#x2b;ua&#x2b;ip&#x29;&#x3b; &#x2f;&#x2f;calculating sid again to compare&#xa;&#xa;var write_sid      &#x3d; sid&#x3b; &#x2f;&#x2f;deafult sid is the actual sid&#xa;&#xa;var s_len          &#x3d; 1800&#x3b; &#x2f;&#x2f;session length in seconds 30 minutes &#x3d;&#x3d; 30&#x2a;60 &#x3d; 1800 seconds&#xa;&#xa;&#x2f;&#x2f;within an running session but NOT at the beginning&#xa;if&#x28;last_sid &#x3d;&#x3d; curr_sid &#x26;&#x26; raw_sid &#x3d;&#x3d; curr_sid&#x29;&#x7b;&#xa;	&#x2f;&#x2f;the session is terminated and will be reset with new ID&#xa;	if&#x28;last_timestamp &#x3c; &#x28;timestamp-s_len&#x29;&#x29;&#x7b;&#xa;		&#x2f;&#x2f;calculate the MD5 sum of day&#x2b;ua&#x2b;ip&#x2b;timestamp as new sid &#xa;		var new_sid &#x3d; Packages.org.apache.commons.codec.digest.DigestUtils.md5Hex&#x28;tempdate&#x2b;ua&#x2b;ip&#x2b;timestamp&#x29;&#x3b;&#xa;		setVariable&#x28;&#x22;last_sid&#x22;,new_sid, &#x22;r&#x22;&#x29;&#x3b;&#xa;		setVariable&#x28;&#x22;last_timestamp&#x22;,timestamp, &#x22;r&#x22;&#x29;&#x3b;&#xa;		write_sid &#x3d; new_sid&#x3b;&#xa;	&#x7d;&#xa;	&#x2f;&#x2f;session is within the timeframe and still valid&#xa;	else&#x7b;&#xa;		setVariable&#x28;&#x22;last_sid&#x22;,last_sid, &#x22;r&#x22;&#x29;&#x3b; &#x2f;&#x2f;no need of new sid because the old is still valid&#xa;		setVariable&#x28;&#x22;last_timestamp&#x22;,timestamp, &#x22;r&#x22;&#x29;&#x3b;&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#x2f;&#x2f;within a running raw-session which had alrede reset&#xa;else if&#x28;last_sid &#x21;&#x3d; curr_sid &#x26;&#x26; raw_sid &#x3d;&#x3d; curr_sid&#x29;&#x7b;&#xa;	&#x2f;&#x2f;BUT the new session is also invalid&#xa;	if&#x28; last_timestamp &#x3c; &#x28;timestamp-s_len&#x29;&#x29;&#x7b;&#xa;		&#x2f;&#x2f;calculate the MD5 sum of day&#x2b;ua&#x2b;ip&#x2b;timestamp as new sid &#xa;		var new_sid &#x3d; Packages.org.apache.commons.codec.digest.DigestUtils.md5Hex&#x28;tempdate&#x2b;ua&#x2b;ip&#x2b;timestamp&#x29;&#x3b;&#xa;		setVariable&#x28;&#x22;last_sid&#x22;,new_sid, &#x22;r&#x22;&#x29;&#x3b;&#xa;		setVariable&#x28;&#x22;last_timestamp&#x22;,timestamp, &#x22;r&#x22;&#x29;&#x3b;&#xa;		write_sid &#x3d; new_sid&#x3b;&#xa;	&#x7d;&#xa;	&#x2f;&#x2f;session is within the timeframe and still valid&#xa;	else&#x7b;&#xa;		setVariable&#x28;&#x22;last_sid&#x22;,last_sid, &#x22;r&#x22;&#x29;&#x3b;&#xa;		setVariable&#x28;&#x22;last_timestamp&#x22;,timestamp, &#x22;r&#x22;&#x29;&#x3b;&#xa;		write_sid &#x3d; last_sid&#x3b; &#x2f;&#x2f; in last_sid is the OLD, NEW sid from last line&#x28;s&#x29;&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#x2f;&#x2f;else if &#x28;last_sid &#x21;&#x3d; curr_sid &#x26;&#x26; raw_sid &#x21;&#x3d; curr_sid&#x29;&#x7b;&#xa;else&#x7b;&#xa;	setVariable&#x28;&#x22;last_sid&#x22;,sid, &#x22;r&#x22;&#x29;&#x3b;&#xa;	setVariable&#x28;&#x22;last_raw_sid&#x22;,sid, &#x22;r&#x22;&#x29;&#x3b;&#xa;	setVariable&#x28;&#x22;last_timestamp&#x22;,timestamp, &#x22;r&#x22;&#x29;&#x3b;&#xa;&#x7d;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>write_sid</name>
         <rename>sid</rename>
         <type>String</type>
@@ -1283,8 +1324,8 @@
         <replace>Y</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>738</xloc>
-      <yloc>220</yloc>
+      <xloc>596</xloc>
+      <yloc>278</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1311,104 +1352,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>346</xloc>
-      <yloc>601</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Sort by &#x22;ip_id&#x22;</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>Y</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>ip_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>208</xloc>
-      <yloc>25</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Sort by &#x22;ip_id&#x22; 2</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>Y</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>ip_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>208</xloc>
-      <yloc>302</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Sort by IP 2</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>68</xloc>
-      <yloc>601</yloc>
+      <xloc>493</xloc>
+      <yloc>513</yloc>
       <draw>N</draw>
       </GUI>
     </step>
@@ -1447,9 +1392,105 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>601</xloc>
-      <yloc>220</yloc>
+      <xloc>493</xloc>
+      <yloc>278</yloc>
       <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort by &#x22;ip_id&#x22;</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>Y</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>ip_id</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>357</xloc>
+      <yloc>132</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort by &#x22;ip_id&#x22; 2</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>Y</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>ip_id</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>220</xloc>
+      <yloc>325</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort by IP 2</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>85</xloc>
+      <yloc>737</yloc>
+      <draw>N</draw>
       </GUI>
     </step>
 
@@ -1466,8 +1507,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>68</xloc>
-      <yloc>25</yloc>
+      <xloc>220</xloc>
+      <yloc>132</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1485,8 +1526,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>208</xloc>
-      <yloc>402</yloc>
+      <xloc>493</xloc>
+      <yloc>439</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1511,8 +1552,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>68</xloc>
-      <yloc>601</yloc>
+      <xloc>85</xloc>
+      <yloc>737</yloc>
       <draw>N</draw>
       </GUI>
     </step>
@@ -1536,96 +1577,9 @@
         <case_insensitive>Y</case_insensitive>
         </field>      </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>68</xloc>
-      <yloc>131</yloc>
+      <xloc>78</xloc>
+      <yloc>185</yloc>
       <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add &#x22;raw_sid&#x22;</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>raw_sid</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>Y</set_empty_string>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>346</xloc>
-      <yloc>220</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Set field value</name>
-    <type>SetValueField</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>raw_sid</name>
-        <replaceby>sid</replaceby>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>465</xloc>
-      <yloc>220</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Filter rows 2</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to/>
-<send_false_to/>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>sid</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>008130caecec93dd4a87168a03707858</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>285</xloc>
-      <yloc>82</yloc>
-      <draw>N</draw>
       </GUI>
     </step>
 
